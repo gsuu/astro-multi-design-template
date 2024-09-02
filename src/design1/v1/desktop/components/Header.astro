@@ -1,0 +1,48 @@
+---
+import { appStore } from '@design1/v1/store';
+
+const store = appStore.getStore();
+const { transparentThreshold = 100 } = Astro.props;
+const isHeaderTransparent = store.getState().isHeaderTransparent;
+---
+
+<header id="header" class={isHeaderTransparent ? 'is-transparent' : ''}>
+  <slot />
+</header>
+
+<style>
+  header {
+    transition: background-color 0.3s ease;
+  }
+
+  header.is-transparent {
+    background-color: transparent;
+  }
+</style>
+
+<script define:vars={{ transparentThreshold }}>
+  import { getStore } from '../path/to/your/store';
+  
+  const store = getStore();
+  const header = document.getElementById('header');
+
+  function handleScroll() {
+    const scrollPosition = window.scrollY;
+    const isTransparent = scrollPosition > transparentThreshold;
+    
+    if (isTransparent !== store.getState().isHeaderTransparent) {
+      store.setState({ isHeaderTransparent: isTransparent });
+      header.classList.toggle('is-transparent', isTransparent);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    handleScroll(); // 초기 상태 설정
+    window.addEventListener('scroll', handleScroll);
+  });
+
+  // 스토어 상태 변경 시 업데이트
+  store.subscribe((state) => {
+    header.classList.toggle('is-transparent', state.isHeaderTransparent);
+  });
+</script>

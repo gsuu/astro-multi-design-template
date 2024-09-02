@@ -1,40 +1,48 @@
-# Astro Starter Kit: Basics
-
-```sh
-npm create astro@latest -- --template basics
-```
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+# Astro-multi-design-template
 
 ## 🚀 Project Structure
 
 Inside of your Astro project, you'll see the following folders and files:
 
 ```text
-/
-├── public/
-│   └── favicon.svg
+project-root/
+├── docs/                                 # Guide 필요한 경우 셋팅
 ├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
+│   ├──common/
+│   │   ├── ... (공통 컴포넌트, 유틸리티 등)
+│   ├── design1/
+│   │   ├── v1/
+│   │   │   ├── mobile/
+│   │   │   └── desktop/
+│   │   ├── v2/
+│   │   │   ├── mobile/
+│   │   │   └── desktop/
+│   │   └── ...
+│   ├── design2/
+│   │   ├── v1/
+│   │   │   ├── mobile/
+│   │   │   └── desktop/
+│   │   ├── v2/
+│   │   │   ├── mobile/
+│   │   │   └── desktop/
+│   │   └── ...
+│   └── design3/
+│       ├── v1/
+│       │   ├── mobile/
+│       │   └── desktop/
+│       ├── v2/
+│       │   ├── mobile/
+│       │   └── desktop/
+│       └── ...
 └── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+- src/: 각 디자인, 버전, 그리고 모바일/데스크톱 레이아웃의 소스 코드가 포함됩니다.
+- common/: 모든 디자인에서 공통으로 사용되는 컴포넌트와 유틸리티가 포함됩니다.
+- package.json: 프로젝트의 의존성과 스크립트를 정의합니다.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
+- 버전은 디자인이 전반적으로 달라질 때만 추가 되며, 부분적으로 달라지는 경우는 페이지를 추가하는 것이 좋습니다.
+- 때로는 design1/common 이 추가될 수도 있습니다.
 
 ## 🧞 Commands
 
@@ -48,6 +56,18 @@ All commands are run from the root of the project, from a terminal:
 | `npm run preview`         | Preview your build locally, before deploying     |
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
+
+### 추가 빌드 옵션
+
+특정 디자인 또는 버전을 빌드하기 위한 추가 명령어:
+
+| 명령어                  | 설명                       |
+| :---------------------- | :------------------------- |
+| `npm run build:design1` | design1의 모든 버전 빌드   |
+| `npm run build:design2` | design2의 모든 버전 빌드   |
+| `npm run build:design3` | design3의 모든 버전 빌드   |
+| `npm run build:v1`      | 모든 디자인의 v1 버전 빌드 |
+| `npm run build:v2`      | 모든 디자인의 v2 버전 빌드 |
 
 ## 👀 Want to learn more?
 
